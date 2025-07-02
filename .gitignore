@@ -1,2 +1,6 @@
 "db_data/" 
 "wordpress_data/" 
+"db_data/" 
+"wordpress_data/" 
+"node_modules/" 
+".env" 

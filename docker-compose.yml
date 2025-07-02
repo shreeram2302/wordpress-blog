@@ -3,28 +3,28 @@ version: '3.8'
 services:
   wordpress:
     image: wordpress:latest
+    container_name: wordpress
+    restart: always
     ports:
       - "8000:80"
-    restart: always
     environment:
       WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: password
       WORDPRESS_DB_NAME: wordpress
     volumes:
-      - wordpress_data:/var/www/html
+      - ./wordpress:/var/www/html    # ✅ THIS LINE ADDS LOCAL FOLDER SYNC
 
   db:
     image: mysql:5.7
+    container_name: wordpress_db
     restart: always
     environment:
       MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
     volumes:
       - db_data:/var/lib/mysql
 
 volumes:
-  wordpress_data:
   db_data:
